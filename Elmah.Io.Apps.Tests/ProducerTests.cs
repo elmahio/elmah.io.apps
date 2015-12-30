@@ -117,9 +117,9 @@ namespace Elmah.Io.Apps.Tests
             {
                 Variables = new List<Variable>
                 {
-                    new Variable {Name = "string", Description = "description", Required = true, Type = VariableType.Text},
-                    new Variable {Name = "integer", Description = "description", Required = false, Type = VariableType.Number},
-                    new Variable {Name = "boolean", Description = "description", Required = true, Type = VariableType.Checkbox},
+                    new Variable {Key = "astring", Name = "A string", Description = "description", Required = true, Type = VariableType.Text},
+                    new Variable {Key = "anumber", Name = "A number", Description = "description", Required = false, Type = VariableType.Number},
+                    new Variable {Key = "aboolean", Name = "A boolean", Description = "description", Required = true, Type = VariableType.Checkbox},
                 },
             };
 
