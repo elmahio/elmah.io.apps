@@ -117,9 +117,9 @@ namespace Elmah.Io.Apps.Tests
             {
                 Variables = new List<Variable>
                 {
-                    new Variable {Name = "string", Description = "description", Required = true, Type = VariableType.String},
-                    new Variable {Name = "integer", Description = "description", Required = false, Type = VariableType.Integer},
-                    new Variable {Name = "boolean", Description = "description", Required = true, Type = VariableType.Boolean},
+                    new Variable {Name = "string", Description = "description", Required = true, Type = VariableType.Text},
+                    new Variable {Name = "integer", Description = "description", Required = false, Type = VariableType.Number},
+                    new Variable {Name = "boolean", Description = "description", Required = true, Type = VariableType.Checkbox},
                 },
             };
 
@@ -127,9 +127,9 @@ namespace Elmah.Io.Apps.Tests
 
             Assert.That(newApp, Is.Not.Null);
             Assert.That(newApp.Variables.Count, Is.EqualTo(3));
-            Assert.That(VariablePresent(newApp.Variables, VariableType.String, true));
-            Assert.That(VariablePresent(newApp.Variables, VariableType.Integer, false));
-            Assert.That(VariablePresent(newApp.Variables, VariableType.Boolean, true));
+            Assert.That(VariablePresent(newApp.Variables, VariableType.Text, true));
+            Assert.That(VariablePresent(newApp.Variables, VariableType.Number, false));
+            Assert.That(VariablePresent(newApp.Variables, VariableType.Checkbox, true));
         }
 
         private bool VariablePresent(List<Variable> variables, VariableType variableType, bool required)

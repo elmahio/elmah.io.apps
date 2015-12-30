@@ -4,11 +4,11 @@ namespace Elmah.Io.Apps.Manifest
 {
     public enum VariableType
     {
-        [EnumMember(Value = "string")]
-        String,
-        [EnumMember(Value = "integer")]
-        Integer,
-        [EnumMember(Value = "boolean")]
-        Boolean,
+        [EnumMember(Value = "text")]
+        Text,
+        [EnumMember(Value = "number")]
+        Number,
+        [EnumMember(Value = "checkbox")]
+        Checkbox,
     }
 }
