@@ -6,9 +6,10 @@ namespace Elmah.Io.Apps.Manifest
     {
         [EnumMember(Value = "text")]
         Text,
-        [EnumMember(Value = "number")]
-        Number,
-        [EnumMember(Value = "checkbox")]
-        Checkbox,
+        // Not yet supported:
+        //[EnumMember(Value = "number")]
+        //Number,
+        //[EnumMember(Value = "checkbox")]
+        //Checkbox,
     }
 }

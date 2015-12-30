@@ -2,6 +2,11 @@
 {
     public class Variable
     {
+        public Variable()
+        {
+            Type = VariableType.Text;
+        }
+
         public string Key { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
