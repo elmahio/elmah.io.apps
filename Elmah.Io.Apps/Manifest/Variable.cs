@@ -9,6 +9,7 @@
 
         public string Key { get; set; }
         public string Name { get; set; }
+        public string Example { get; set; }
         public string Description { get; set; }
         public VariableType Type { get; set; }
         public bool Required { get; set; }

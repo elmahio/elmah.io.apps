@@ -117,22 +117,24 @@ namespace Elmah.Io.Apps.Tests
             {
                 Variables = new List<Variable>
                 {
-                    new Variable {Key = "astring", Name = "A string", Description = "description", Required = true, Type = VariableType.Text},
-                    new Variable {Key = "anotherstring", Name = "Another string", Description = "description", Required = false, Type = VariableType.Text},
+                    new Variable {Key = "astring", Name = "A string", Example = "Some string", Description = "description", Required = true, Type = VariableType.Text},
+                    new Variable {Key = "anotherstring", Name = "Another string", Example = "Some string", Description = "description", Required = false, Type = VariableType.Text},
+                    new Variable {Key = "asimplestring"}
                 },
             };
 
             var newApp = AppManifest.Parse(AppManifest.Produce(app));
 
             Assert.That(newApp, Is.Not.Null);
-            Assert.That(newApp.Variables.Count, Is.EqualTo(2));
-            Assert.That(VariablePresent(newApp.Variables, VariableType.Text, true));
-            Assert.That(VariablePresent(newApp.Variables, VariableType.Text, false));
+            Assert.That(newApp.Variables.Count, Is.EqualTo(3));
+            Assert.That(VariablePresent(newApp.Variables, "astring", VariableType.Text, true));
+            Assert.That(VariablePresent(newApp.Variables, "anotherstring", VariableType.Text, false));
+            Assert.That(VariablePresent(newApp.Variables, "asimplestring", VariableType.Text, false));
         }
 
-        private bool VariablePresent(List<Variable> variables, VariableType variableType, bool required)
+        private bool VariablePresent(List<Variable> variables, string key, VariableType variableType, bool required)
         {
-            return variables.Any(v => v.Type == variableType && v.Required == required);
+            return variables.Any(v => v.Key == key && v.Type == variableType && v.Required == required);
         }
     }
 }
