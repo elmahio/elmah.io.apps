@@ -132,6 +132,14 @@ namespace Elmah.Io.Apps.Tests
             Assert.That(VariablePresent(newApp.Variables, "asimplestring", VariableType.Text, false));
         }
 
+        [Test]
+        public void CanProduceMarkerApp()
+        {
+            var app = new App();
+            var newApp = AppManifest.Parse(AppManifest.Produce(app));
+            Assert.That(newApp != null);
+        }
+
         private bool VariablePresent(List<Variable> variables, string key, VariableType variableType, bool required)
         {
             return variables.Any(v => v.Key == key && v.Type == variableType && v.Required == required);
