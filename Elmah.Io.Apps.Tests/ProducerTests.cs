@@ -140,6 +140,24 @@ namespace Elmah.Io.Apps.Tests
             Assert.That(newApp != null);
         }
 
+        [Test]
+        public void CanProduceAppWithSelect()
+        {
+            var app = new App
+            {
+                Variables = new List<Variable>
+                {
+                    new Variable {Type = VariableType.Text, Key = "myselect", Values = new[] {"One", "Two", "three"}}
+                }
+            };
+            var newApp = AppManifest.Parse(AppManifest.Produce(app));
+            Assert.That(newApp != null);
+            Assert.That(newApp.Variables != null);
+            Assert.That(newApp.Variables.Count, Is.EqualTo(1));
+            Assert.That(newApp.Variables.First().Values.Length, Is.EqualTo(3));
+            Assert.That(newApp.Variables.First().Values.All(v => v is string));
+        }
+
         private bool VariablePresent(List<Variable> variables, string key, VariableType variableType, bool required)
         {
             return variables.Any(v => v.Key == key && v.Type == variableType && v.Required == required);
