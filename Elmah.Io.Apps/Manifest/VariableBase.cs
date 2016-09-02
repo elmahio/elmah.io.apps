@@ -9,7 +9,7 @@ namespace Elmah.Io.Apps.Manifest
             Type = type;
         }
 
-        public VariableType Type { get; }
+        public VariableType Type { get; private set; }
 
         public string Key { get; set; }
 
