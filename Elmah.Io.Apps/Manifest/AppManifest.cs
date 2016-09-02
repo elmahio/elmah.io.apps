@@ -11,7 +11,7 @@ namespace Elmah.Io.Apps.Manifest
             return JsonConvert.DeserializeObject<App>(json, new JsonSerializerSettings
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                Converters = new JsonConverter[] {new StringEnumConverter(), new ThenConverter() }
+                Converters = new JsonConverter[] {new StringEnumConverter(), new ThenConverter(), new VariableConverter() }
             });
         }
 
@@ -21,7 +21,7 @@ namespace Elmah.Io.Apps.Manifest
                 new JsonSerializerSettings
                 {
                     ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                    Converters = new JsonConverter[] {new StringEnumConverter(), new ThenConverter() }
+                    Converters = new JsonConverter[] {new StringEnumConverter(), new ThenConverter(), new VariableConverter() }
                 });
         }
     }

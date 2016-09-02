@@ -115,27 +115,28 @@ namespace Elmah.Io.Apps.Tests
         {
             var app = new App
             {
-                Variables = new List<Variable>
+                Variables = new List<IVariable>
                 {
-                    new Variable {Type = VariableType.Text, Key = "astring", Name = "A string", Example = "Some string", Description = "description", Required = true},
-                    new Variable {Type = VariableType.Text, Key = "anotherstring", Name = "Another string", Example = "Some string", Description = "description", Required = false},
-                    new Variable {Type = VariableType.Text, Key = "asimplestring"},
-                    new Variable {Type = VariableType.Select, Key = "aselect", Name = "A select", Values = new [] {"One", "Two", "Three"}},
-                    new Variable {Type = VariableType.Number, Key = "anumber", Name = "A number"},
-                    new Variable {Type = VariableType.Checkbox, Key = "acheckbox", Name = "A checkbox", Default = true},
+                    new TextVariable {Key = "astring", Name = "A string", Example = "Some string", Description = "description", Required = true},
+                    new TextVariable {Key = "anotherstring", Name = "Another string", Example = "Some string", Description = "description", Required = false},
+                    new TextVariable {Key = "asimplestring"},
+                    new ChoiceVariable {Key = "aselect", Name = "A select", Values = new [] {"One", "Two", "Three"}},
+                    new NumberVariable {Key = "anumber", Name = "A number"},
+                    new BoolVariable {Key = "acheckbox", Name = "A checkbox", Default = true},
                 },
             };
 
-            var newApp = AppManifest.Parse(AppManifest.Produce(app));
+            var produce = AppManifest.Produce(app);
+            var newApp = AppManifest.Parse(produce);
 
             Assert.That(newApp, Is.Not.Null);
             Assert.That(newApp.Variables.Count, Is.EqualTo(6));
             Assert.That(VariablePresent(newApp.Variables, "astring", VariableType.Text, true));
             Assert.That(VariablePresent(newApp.Variables, "anotherstring", VariableType.Text, false));
             Assert.That(VariablePresent(newApp.Variables, "asimplestring", VariableType.Text, false));
-            Assert.That(VariablePresent(newApp.Variables, "aselect", VariableType.Select, false));
+            Assert.That(VariablePresent(newApp.Variables, "aselect", VariableType.Choice, false));
             Assert.That(VariablePresent(newApp.Variables, "anumber", VariableType.Number, false));
-            Assert.That(VariablePresent(newApp.Variables, "acheckbox", VariableType.Checkbox, false));
+            Assert.That(VariablePresent(newApp.Variables, "acheckbox", VariableType.Bool, false));
         }
 
         [Test]
@@ -147,20 +148,21 @@ namespace Elmah.Io.Apps.Tests
         }
 
         [Test]
-        public void CanProduceAppWithSelect()
+        public void CanProduceAppWithChoice()
         {
             var app = new App
             {
-                Variables = new List<Variable>
+                Variables = new List<IVariable>
                 {
-                    new Variable {Type = VariableType.Select, Key = "myselect", Values = new[] {"One", "Two", "three"}}
+                    new ChoiceVariable {Key = "myselect", Values = new[] {"One", "Two", "three"}}
                 }
             };
             var newApp = AppManifest.Parse(AppManifest.Produce(app));
             Assert.That(newApp != null);
             Assert.That(newApp.Variables != null);
             Assert.That(newApp.Variables.Count, Is.EqualTo(1));
-            Assert.That(newApp.Variables.First().Values.Length, Is.EqualTo(3));
+            Assert.That(newApp.Variables.First() is ChoiceVariable);
+            Assert.That((newApp.Variables.First() as ChoiceVariable).Values.Length, Is.EqualTo(3));
         }
 
         [Test]
@@ -168,36 +170,38 @@ namespace Elmah.Io.Apps.Tests
         {
             var app = new App
             {
-                Variables = new List<Variable>
+                Variables = new List<IVariable>
                 {
-                    new Variable {Type = VariableType.Number, Key = "myselect", Default = 42}
+                    new NumberVariable {Key = "myselect", Default = 42}
                 }
             };
             var newApp = AppManifest.Parse(AppManifest.Produce(app));
             Assert.That(newApp != null);
             Assert.That(newApp.Variables != null);
             Assert.That(newApp.Variables.Count, Is.EqualTo(1));
-            Assert.That(newApp.Variables.First().Default, Is.EqualTo(42));
+            Assert.That(newApp.Variables.First() is NumberVariable);
+            Assert.That((newApp.Variables.First() as NumberVariable).Default, Is.EqualTo(42));
         }
 
         [Test]
-        public void CanProduceAppWithCheckboxVariable()
+        public void CanProduceAppWithBoolVariable()
         {
             var app = new App
             {
-                Variables = new List<Variable>
+                Variables = new List<IVariable>
                 {
-                    new Variable {Key = "mycheckbox", Default = true}
+                    new BoolVariable {Key = "mybool", Default = true}
                 }
             };
             var newApp = AppManifest.Parse(AppManifest.Produce(app));
             Assert.That(newApp != null);
             Assert.That(newApp.Variables != null);
             Assert.That(newApp.Variables.Count, Is.EqualTo(1));
-            Assert.That(newApp.Variables.First().Default, Is.EqualTo(true));
+            Assert.That(newApp.Variables.First() is BoolVariable);
+            Assert.That((newApp.Variables.First() as BoolVariable).Default, Is.EqualTo(true));
         }
 
-        private bool VariablePresent(List<Variable> variables, string key, VariableType variableType, bool required)
+        private bool VariablePresent(List<IVariable> variables, string key, VariableType variableType, bool required)
         {
             return variables.Any(v => v.Key == key && v.Type == variableType && v.Required == required);
         }

@@ -45,6 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manifest\App.cs" />
+    <Compile Include="Manifest\BoolVariable.cs" />
+    <Compile Include="Manifest\NumberVariable.cs" />
+    <Compile Include="Manifest\VariableConverter.cs" />
+    <Compile Include="Manifest\ChoiceVariable.cs" />
+    <Compile Include="Manifest\TextVariable.cs" />
     <Compile Include="Manifest\ThenConverter.cs" />
     <Compile Include="Manifest\ThenEmail.cs" />
     <Compile Include="Manifest\ThenHide.cs" />
@@ -54,7 +59,8 @@
     <Compile Include="Manifest\IThen.cs" />
     <Compile Include="Manifest\Rule.cs" />
     <Compile Include="Manifest\ThenType.cs" />
-    <Compile Include="Manifest\Variable.cs" />
+    <Compile Include="Manifest\IVariable.cs" />
+    <Compile Include="Manifest\VariableBase.cs" />
     <Compile Include="Manifest\VariableType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

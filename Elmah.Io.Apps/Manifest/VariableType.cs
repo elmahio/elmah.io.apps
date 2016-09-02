@@ -6,11 +6,11 @@ namespace Elmah.Io.Apps.Manifest
     {
         [EnumMember(Value = "text")]
         Text,
-        [EnumMember(Value = "select")]
-        Select,
+        [EnumMember(Value = "choice")]
+        Choice,
         [EnumMember(Value = "number")]
         Number,
-        [EnumMember(Value = "checkbox")]
-        Checkbox,
+        [EnumMember(Value = "bool")]
+        Bool,
     }
 }

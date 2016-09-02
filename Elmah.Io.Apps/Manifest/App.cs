@@ -6,10 +6,10 @@ namespace Elmah.Io.Apps.Manifest
     {
         public App()
         {
-            Variables = new List<Variable>();
+            Variables = new List<IVariable>();
         }
 
-        public List<Variable> Variables { get; set; }
+        public List<IVariable> Variables { get; set; }
         public Rule Rule { get; set; }
     }
 }
