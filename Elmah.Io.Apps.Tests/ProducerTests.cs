@@ -17,7 +17,7 @@ namespace Elmah.Io.Apps.Tests
                 {
                     Title = "title",
                     Query = "*",
-                    Then = new ThenHttp(new Uri("http://localhost"))
+                    Then = new ThenHttp("http://localhost")
                     {
                         Method = "POST",
                         ContentType = "application/json",
