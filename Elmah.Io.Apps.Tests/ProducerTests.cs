@@ -9,6 +9,40 @@ namespace Elmah.Io.Apps.Tests
     public class ProducerTests
     {
         [Test]
+        public void CanProduceHttpWithBasicAuth()
+        {
+            var app = new App
+            {
+                Rule = new Rule
+                {
+                    Title = "title",
+                    Query = "*",
+                    Then = new ThenHttp("http://localhost")
+                    {
+                        Authentication = new BasicAuthentication
+                        {
+                            Username = "username",
+                            Password = "password"
+                        }
+                    }
+                }
+            };
+
+            var newApp = AppManifest.Parse(AppManifest.Produce(app));
+
+            Assert.That(newApp, Is.Not.Null);
+            Assert.That(newApp.Rule, Is.Not.Null);
+            Assert.That(newApp.Rule.Then, Is.Not.Null);
+            Assert.That(newApp.Rule.Then.Type, Is.EqualTo(ThenType.Http));
+            var http = newApp.Rule.Then as ThenHttp;
+            Assert.That(http != null);
+            var basicAuth = http.Authentication as BasicAuthentication;
+            Assert.That(basicAuth != null);
+            Assert.That(basicAuth.Username, Is.EqualTo("username"));
+            Assert.That(basicAuth.Password, Is.EqualTo("password"));
+        }
+
+        [Test]
         public void CanProduceHttp()
         {
             var app = new App

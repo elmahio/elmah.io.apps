@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Elmah.Io.Apps.Manifest
 {
-    internal class ThenConverter : JsonConverter
+    public class AuthenticationConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
@@ -17,14 +17,8 @@ namespace Elmah.Io.Apps.Manifest
             JObject jo = JObject.Load(reader);
             switch (jo["type"].Value<string>())
             {
-                case "http":
-                    return jo.ToObject<ThenHttp>(serializer);
-                case "email":
-                    return jo.ToObject<ThenEmail>(serializer);
-                case "ignore":
-                    return jo.ToObject<ThenIgnore>(serializer);
-                case "hide":
-                    return jo.ToObject<ThenHide>(serializer);
+                case "basic":
+                    return jo.ToObject<BasicAuthentication>(serializer);
             }
 
             return null;
@@ -32,7 +26,7 @@ namespace Elmah.Io.Apps.Manifest
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof (IThen);
+            return objectType == typeof(IAuthentication);
         }
     }
 }
