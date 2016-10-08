@@ -5,6 +5,8 @@ namespace Elmah.Io.Apps.Manifest
     public enum AuthenticationType
     {
         [EnumMember(Value = "basic")]
-        Basic
+        Basic,
+        [EnumMember(Value = "bearer")]
+        Bearer
     }
 }

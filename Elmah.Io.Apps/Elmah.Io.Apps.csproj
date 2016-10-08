@@ -48,6 +48,7 @@
     <Compile Include="Manifest\AuthenticationConverter.cs" />
     <Compile Include="Manifest\AuthenticationType.cs" />
     <Compile Include="Manifest\BasicAuthentication.cs" />
+    <Compile Include="Manifest\BearerTokenAuthentication.cs" />
     <Compile Include="Manifest\BoolVariable.cs" />
     <Compile Include="Manifest\IAuthentication.cs" />
     <Compile Include="Manifest\NumberVariable.cs" />

@@ -19,6 +19,8 @@ namespace Elmah.Io.Apps.Manifest
             {
                 case "basic":
                     return jo.ToObject<BasicAuthentication>(serializer);
+                case "bearer":
+                    return jo.ToObject<BearerTokenAuthentication>(serializer);
             }
 
             return null;

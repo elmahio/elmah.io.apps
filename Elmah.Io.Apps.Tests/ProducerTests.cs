@@ -9,6 +9,38 @@ namespace Elmah.Io.Apps.Tests
     public class ProducerTests
     {
         [Test]
+        public void CanProduceHttpWithBearerTokenAuth()
+        {
+            var app = new App
+            {
+                Rule = new Rule
+                {
+                    Title = "title",
+                    Query = "*",
+                    Then = new ThenHttp("http://localhost")
+                    {
+                        Authentication = new BearerTokenAuthentication()
+                        {
+                            Token = "token"
+                        }
+                    }
+                }
+            };
+
+            var newApp = AppManifest.Parse(AppManifest.Produce(app));
+
+            Assert.That(newApp, Is.Not.Null);
+            Assert.That(newApp.Rule, Is.Not.Null);
+            Assert.That(newApp.Rule.Then, Is.Not.Null);
+            Assert.That(newApp.Rule.Then.Type, Is.EqualTo(ThenType.Http));
+            var http = newApp.Rule.Then as ThenHttp;
+            Assert.That(http != null);
+            var bearerTokenAuthentication = http.Authentication as BearerTokenAuthentication;
+            Assert.That(bearerTokenAuthentication != null);
+            Assert.That(bearerTokenAuthentication.Token, Is.EqualTo("token"));
+        }
+
+        [Test]
         public void CanProduceHttpWithBasicAuth()
         {
             var app = new App
