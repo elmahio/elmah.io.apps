@@ -7,7 +7,7 @@
             Type = ControlType.Button;
         }
 
-        public ControlType Type { get; }
+        public ControlType Type { get; private set; }
 
         public string Text { get; set; }
 
