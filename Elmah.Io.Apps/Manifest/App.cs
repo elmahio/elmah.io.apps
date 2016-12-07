@@ -7,6 +7,7 @@ namespace Elmah.Io.Apps.Manifest
         public App()
         {
             Variables = new List<IVariable>();
+            Controls = new List<IControl>();
         }
 
         public List<IControl> Controls { get; set; }
