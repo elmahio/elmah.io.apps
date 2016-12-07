@@ -189,7 +189,6 @@ namespace Elmah.Io.Apps.Tests
                     new ChoiceVariable {Key = "aselect", Name = "A select", Values = new [] {"One", "Two", "Three"}},
                     new NumberVariable {Key = "anumber", Name = "A number"},
                     new BoolVariable {Key = "acheckbox", Name = "A checkbox", Default = true},
-                    new SlackTokenVariable {Key = "aslacktoken", Name = "A Slack token"},
                 },
             };
 
@@ -197,14 +196,13 @@ namespace Elmah.Io.Apps.Tests
             var newApp = AppManifest.Parse(produce);
 
             Assert.That(newApp, Is.Not.Null);
-            Assert.That(newApp.Variables.Count, Is.EqualTo(7));
+            Assert.That(newApp.Variables.Count, Is.EqualTo(6));
             Assert.That(VariablePresent(newApp.Variables, "astring", VariableType.Text, true));
             Assert.That(VariablePresent(newApp.Variables, "anotherstring", VariableType.Text, false));
             Assert.That(VariablePresent(newApp.Variables, "asimplestring", VariableType.Text, false));
             Assert.That(VariablePresent(newApp.Variables, "aselect", VariableType.Choice, false));
             Assert.That(VariablePresent(newApp.Variables, "anumber", VariableType.Number, false));
             Assert.That(VariablePresent(newApp.Variables, "acheckbox", VariableType.Bool, false));
-            Assert.That(VariablePresent(newApp.Variables, "aslacktoken", VariableType.SlackToken, false));
         }
 
         [Test]

@@ -25,8 +25,6 @@ namespace Elmah.Io.Apps.Manifest
                     return jo.ToObject<ChoiceVariable>(serializer);
                 case "bool":
                     return jo.ToObject<BoolVariable>(serializer);
-                case "slackToken":
-                    return jo.ToObject<SlackTokenVariable>(serializer);
             }
 
             return null;

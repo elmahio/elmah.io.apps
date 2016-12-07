@@ -52,7 +52,6 @@
     <Compile Include="Manifest\BoolVariable.cs" />
     <Compile Include="Manifest\IAuthentication.cs" />
     <Compile Include="Manifest\NumberVariable.cs" />
-    <Compile Include="Manifest\SlackTokenVariable.cs" />
     <Compile Include="Manifest\VariableConverter.cs" />
     <Compile Include="Manifest\ChoiceVariable.cs" />
     <Compile Include="Manifest\TextVariable.cs" />
