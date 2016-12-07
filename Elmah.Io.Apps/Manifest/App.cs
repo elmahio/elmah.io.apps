@@ -9,6 +9,7 @@ namespace Elmah.Io.Apps.Manifest
             Variables = new List<IVariable>();
         }
 
+        public List<IControl> Controls { get; set; }
         public List<IVariable> Variables { get; set; }
         public Rule Rule { get; set; }
     }

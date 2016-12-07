@@ -177,6 +177,27 @@ namespace Elmah.Io.Apps.Tests
         }
 
         [Test]
+        public void CanProduceControls()
+        {
+            const string url = "http://someurl";
+            const string text = "a button";
+            var app = new App
+            {
+                Controls = new List<IControl>
+                {
+                    new ButtonControl {Text = text, Url = url},
+                },
+            };
+
+            var produce = AppManifest.Produce(app);
+            var newApp = AppManifest.Parse(produce);
+
+            Assert.That(newApp, Is.Not.Null);
+            Assert.That(newApp.Controls.Count, Is.EqualTo(1));
+            Assert.That(ButtonPresent(newApp.Controls, text, url));
+        }
+
+        [Test]
         public void CanProduceVariables()
         {
             var app = new App
@@ -270,6 +291,13 @@ namespace Elmah.Io.Apps.Tests
         private bool VariablePresent(List<IVariable> variables, string key, VariableType variableType, bool required)
         {
             return variables.Any(v => v.Key == key && v.Type == variableType && v.Required == required);
+        }
+
+        private bool ButtonPresent(List<IControl> controls, string text, string url)
+        {
+            return
+                controls.Any(
+                    c => c is ButtonControl && ((ButtonControl) c).Text == text && ((ButtonControl) c).Url == url);
         }
     }
 }
