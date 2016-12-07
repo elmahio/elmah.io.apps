@@ -177,27 +177,6 @@ namespace Elmah.Io.Apps.Tests
         }
 
         [Test]
-        public void CanProduceControls()
-        {
-            const string url = "http://someurl";
-            const string text = "a button";
-            var app = new App
-            {
-                Controls = new List<IControl>
-                {
-                    new ButtonControl {Text = text, Url = url},
-                },
-            };
-
-            var produce = AppManifest.Produce(app);
-            var newApp = AppManifest.Parse(produce);
-
-            Assert.That(newApp, Is.Not.Null);
-            Assert.That(newApp.Controls.Count, Is.EqualTo(1));
-            Assert.That(ButtonPresent(newApp.Controls, text, url));
-        }
-
-        [Test]
         public void CanProduceVariables()
         {
             var app = new App
@@ -210,6 +189,7 @@ namespace Elmah.Io.Apps.Tests
                     new ChoiceVariable {Key = "aselect", Name = "A select", Values = new [] {"One", "Two", "Three"}},
                     new NumberVariable {Key = "anumber", Name = "A number"},
                     new BoolVariable {Key = "acheckbox", Name = "A checkbox", Default = true},
+                    new SlackTokenVariable {Key = "aslacktoken", Name = "A Slack token"},
                 },
             };
 
@@ -217,13 +197,14 @@ namespace Elmah.Io.Apps.Tests
             var newApp = AppManifest.Parse(produce);
 
             Assert.That(newApp, Is.Not.Null);
-            Assert.That(newApp.Variables.Count, Is.EqualTo(6));
+            Assert.That(newApp.Variables.Count, Is.EqualTo(7));
             Assert.That(VariablePresent(newApp.Variables, "astring", VariableType.Text, true));
             Assert.That(VariablePresent(newApp.Variables, "anotherstring", VariableType.Text, false));
             Assert.That(VariablePresent(newApp.Variables, "asimplestring", VariableType.Text, false));
             Assert.That(VariablePresent(newApp.Variables, "aselect", VariableType.Choice, false));
             Assert.That(VariablePresent(newApp.Variables, "anumber", VariableType.Number, false));
             Assert.That(VariablePresent(newApp.Variables, "acheckbox", VariableType.Bool, false));
+            Assert.That(VariablePresent(newApp.Variables, "aslacktoken", VariableType.SlackToken, false));
         }
 
         [Test]
@@ -291,13 +272,6 @@ namespace Elmah.Io.Apps.Tests
         private bool VariablePresent(List<IVariable> variables, string key, VariableType variableType, bool required)
         {
             return variables.Any(v => v.Key == key && v.Type == variableType && v.Required == required);
-        }
-
-        private bool ButtonPresent(List<IControl> controls, string text, string url)
-        {
-            return
-                controls.Any(
-                    c => c is ButtonControl && ((ButtonControl) c).Text == text && ((ButtonControl) c).Url == url);
         }
     }
 }
