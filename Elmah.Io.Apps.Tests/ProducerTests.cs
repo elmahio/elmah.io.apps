@@ -75,6 +75,34 @@ namespace Elmah.Io.Apps.Tests
         }
 
         [Test]
+        public void CanProduceHttpWithTestUrl()
+        {
+            var app = new App
+            {
+                Rule = new Rule
+                {
+                    Title = "title",
+                    Query = "*",
+                    Then = new ThenHttp("http://localhost")
+                    {
+                        TestUrl = "http://test"
+                    }
+                }
+            };
+
+            var newApp = AppManifest.Parse(AppManifest.Produce(app));
+
+            Assert.That(newApp, Is.Not.Null);
+            Assert.That(newApp.Rule, Is.Not.Null);
+            Assert.That(newApp.Rule.Then, Is.Not.Null);
+            Assert.That(newApp.Rule.Then.Type, Is.EqualTo(ThenType.Http));
+            var http = newApp.Rule.Then as ThenHttp;
+            Assert.That(http != null);
+            Assert.That(http.TestUrl, Is.EqualTo("http://test"));
+        }
+
+
+        [Test]
         public void CanProduceHttp()
         {
             var app = new App

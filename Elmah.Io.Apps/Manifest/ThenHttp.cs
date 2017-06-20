@@ -14,6 +14,7 @@ namespace Elmah.Io.Apps.Manifest
         public string Method { get; set; }
         public string ContentType { get; set; }
         public string Body { get; set; }
+        public string TestUrl { get; set; }
         public IAuthentication Authentication { get; set; }
         public ThenType Type { get { return ThenType.Http; } }
     }
