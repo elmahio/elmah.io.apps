@@ -2,7 +2,13 @@
 {
     public class BearerTokenAuthentication : IAuthentication
     {
-        public AuthenticationType Type => AuthenticationType.Bearer;
+        public AuthenticationType Type
+        {
+            get
+            {
+                return AuthenticationType.Bearer;
+            }
+        }
 
         public string Token { get; set; }
     }

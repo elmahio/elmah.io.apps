@@ -8,6 +8,6 @@ namespace Elmah.Io.Apps.Manifest
         }
 
         public string Email { get; set; }
-        public ThenType Type => ThenType.Email;
+        public ThenType Type { get { return ThenType.Email; } }
     }
 }

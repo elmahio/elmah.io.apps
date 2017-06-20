@@ -14,6 +14,6 @@
         public string Body { get; set; }
         public string TestUrl { get; set; }
         public IAuthentication Authentication { get; set; }
-        public ThenType Type => ThenType.Http;
+        public ThenType Type { get { return ThenType.Http; } }
     }
 }
