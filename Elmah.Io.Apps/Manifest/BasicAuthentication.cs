@@ -2,7 +2,13 @@
 {
     public class BasicAuthentication : IAuthentication
     {
-        public AuthenticationType Type => AuthenticationType.Basic;
+        public AuthenticationType Type
+        {
+            get
+            {
+                return AuthenticationType.Basic;
+            }
+        }
 
         public string Username { get; set; }
 
