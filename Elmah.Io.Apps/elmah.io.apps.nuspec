@@ -5,7 +5,7 @@
     <authors>elmah.io</authors>
     <owners>elmah.io</owners>
     <dependencies>
-      <dependency id="Newtonsoft.Json" />
+      <dependency id="Newtonsoft.Json" version="7.0.1" />
     </dependencies>
     <id>elmah.io.apps</id>
     <title>elmah.io Apps</title>
