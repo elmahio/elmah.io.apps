@@ -14,7 +14,7 @@ namespace Elmah.Io.Apps.Manifest
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             if (reader.TokenType == JsonToken.Null) return null;
-            JObject jo = JObject.Load(reader);
+            var jo = JObject.Load(reader);
             switch (jo["type"].Value<string>())
             {
                 case "basic":

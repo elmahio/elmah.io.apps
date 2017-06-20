@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace Elmah.Io.Apps.Manifest
+﻿namespace Elmah.Io.Apps.Manifest
 {
     public class ThenHttp : IThen
     {
@@ -16,6 +14,6 @@ namespace Elmah.Io.Apps.Manifest
         public string Body { get; set; }
         public string TestUrl { get; set; }
         public IAuthentication Authentication { get; set; }
-        public ThenType Type { get { return ThenType.Http; } }
+        public ThenType Type => ThenType.Http;
     }
 }

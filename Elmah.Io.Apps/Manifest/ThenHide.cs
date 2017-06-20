@@ -2,6 +2,6 @@
 {
     public class ThenHide : IThen
     {
-        public ThenType Type { get { return ThenType.Hide; } }
+        public ThenType Type => ThenType.Hide;
     }
 }

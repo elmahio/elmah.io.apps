@@ -2,6 +2,6 @@
 {
     public class ThenIgnore : IThen
     {
-        public ThenType Type { get { return ThenType.Ignore; } }
+        public ThenType Type => ThenType.Ignore;
     }
 }

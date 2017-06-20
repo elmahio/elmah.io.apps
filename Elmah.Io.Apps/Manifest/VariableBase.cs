@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Elmah.Io.Apps.Manifest
+﻿namespace Elmah.Io.Apps.Manifest
 {
     public abstract class VariableBase : IVariable
     {
@@ -9,7 +7,7 @@ namespace Elmah.Io.Apps.Manifest
             Type = type;
         }
 
-        public VariableType Type { get; private set; }
+        public VariableType Type { get; }
 
         public string Key { get; set; }
 
