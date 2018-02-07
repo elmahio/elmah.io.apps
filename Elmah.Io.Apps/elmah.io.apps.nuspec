@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Client libraries for elmah.io Apps</description>
     <projectUrl>https://github.com/elmahio/elmah.io.apps</projectUrl>
-    <iconUrl>https://secure.gravatar.com/avatar/5c4cb3646528821117abde6d2d5ee22d?s=32</iconUrl>
+    <iconUrl>https://secure.gravatar.com/avatar/5c4cb3646528821117abde6d2d5ee22d?s=64</iconUrl>
   </metadata>
   <files>
     <file src="bin\$Configuration$\Elmah.Io.Apps.dll" target="lib\net45\Elmah.Io.Apps.dll" />
