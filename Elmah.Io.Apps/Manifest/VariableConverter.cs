@@ -25,6 +25,8 @@ namespace Elmah.Io.Apps.Manifest
                     return jo.ToObject<ChoiceVariable>(serializer);
                 case "bool":
                     return jo.ToObject<BoolVariable>(serializer);
+                case "password":
+                    return jo.ToObject<PasswordVariable>(serializer);
             }
 
             return null;

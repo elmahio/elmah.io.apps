@@ -12,5 +12,7 @@ namespace Elmah.Io.Apps.Manifest
         Number,
         [EnumMember(Value = "bool")]
         Bool,
+        [EnumMember(Value = "password")]
+        Password,
     }
 }
