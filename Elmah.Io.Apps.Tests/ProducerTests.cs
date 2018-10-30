@@ -217,7 +217,7 @@ namespace Elmah.Io.Apps.Tests
                     new ChoiceVariable {Key = "aselect", Name = "A select", Values = new [] {"One", "Two", "Three"}},
                     new NumberVariable {Key = "anumber", Name = "A number"},
                     new BoolVariable {Key = "acheckbox", Name = "A checkbox", Default = true},
-                    new PasswordVariable {Key = "apassword", Name = "A password", Required = true}
+                    new PasswordVariable {Key = "apassword", Name = "A password", Example = "Some password", Required = true}
                 },
             };
 

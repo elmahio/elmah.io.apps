@@ -5,5 +5,7 @@
         public PasswordVariable() : base(VariableType.Password)
         {
         }
+
+        public string Example { get; set; }
     }
 }
