@@ -11,7 +11,8 @@
     <title>elmah.io Apps</title>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Client libraries for elmah.io Apps</description>
-    <projectUrl>https://github.com/elmahio/elmah.io.apps</projectUrl>
+    <projectUrl>https://elmah.io/</projectUrl>
+    <repository type="git" url="https://github.com/elmahio/elmah.io.apps" />
     <iconUrl>https://secure.gravatar.com/avatar/5c4cb3646528821117abde6d2d5ee22d?s=64</iconUrl>
   </metadata>
   <files>
