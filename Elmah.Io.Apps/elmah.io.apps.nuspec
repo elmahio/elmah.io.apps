@@ -9,6 +9,7 @@
     </dependencies>
     <id>elmah.io.apps</id>
     <title>elmah.io Apps</title>
+    <license type="expression">Apache-2.0</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Client libraries for elmah.io Apps</description>
     <projectUrl>https://elmah.io/</projectUrl>
