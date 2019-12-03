@@ -19,6 +19,8 @@ namespace Elmah.Io.Apps.Manifest
             {
                 case "text":
                     return jo.ToObject<TextVariable>(serializer);
+                case "hidden":
+                    return jo.ToObject<HiddenVariable>(serializer);
                 case "number":
                     return jo.ToObject<NumberVariable>(serializer);
                 case "choice":

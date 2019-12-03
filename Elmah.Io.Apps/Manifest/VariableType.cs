@@ -14,5 +14,7 @@ namespace Elmah.Io.Apps.Manifest
         Bool,
         [EnumMember(Value = "password")]
         Password,
+        [EnumMember(Value = "hidden")]
+        Hidden,
     }
 }

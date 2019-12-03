@@ -50,6 +50,7 @@
     <Compile Include="Manifest\BasicAuthentication.cs" />
     <Compile Include="Manifest\BearerTokenAuthentication.cs" />
     <Compile Include="Manifest\BoolVariable.cs" />
+    <Compile Include="Manifest\HiddenVariable.cs" />
     <Compile Include="Manifest\IAuthentication.cs" />
     <Compile Include="Manifest\NumberVariable.cs" />
     <Compile Include="Manifest\PasswordVariable.cs" />

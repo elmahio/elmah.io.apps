@@ -214,6 +214,7 @@ namespace Elmah.Io.Apps.Tests
                     new TextVariable {Key = "astring", Name = "A string", Example = "Some string", Description = "description", Required = true},
                     new TextVariable {Key = "anotherstring", Name = "Another string", Example = "Some string", Description = "description", Required = false},
                     new TextVariable {Key = "asimplestring"},
+                    new HiddenVariable {Key = "ahiddenstring"},
                     new ChoiceVariable {Key = "aselect", Name = "A select", Values = new [] {"One", "Two", "Three"}},
                     new NumberVariable {Key = "anumber", Name = "A number"},
                     new BoolVariable {Key = "acheckbox", Name = "A checkbox", Default = true},
@@ -225,10 +226,11 @@ namespace Elmah.Io.Apps.Tests
             var newApp = AppManifest.Parse(produce);
 
             Assert.That(newApp, Is.Not.Null);
-            Assert.That(newApp.Variables.Count, Is.EqualTo(7));
+            Assert.That(newApp.Variables.Count, Is.EqualTo(8));
             Assert.That(VariablePresent(newApp.Variables, "astring", VariableType.Text, true));
             Assert.That(VariablePresent(newApp.Variables, "anotherstring", VariableType.Text, false));
             Assert.That(VariablePresent(newApp.Variables, "asimplestring", VariableType.Text, false));
+            Assert.That(VariablePresent(newApp.Variables, "ahiddenstring", VariableType.Hidden, false));
             Assert.That(VariablePresent(newApp.Variables, "aselect", VariableType.Choice, false));
             Assert.That(VariablePresent(newApp.Variables, "anumber", VariableType.Number, false));
             Assert.That(VariablePresent(newApp.Variables, "acheckbox", VariableType.Bool, false));
